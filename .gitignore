@@ -1,0 +1,7 @@
+.settings/
+target/
+build/
+output/
+bin/
+dist/
+logs/
