@@ -9,9 +9,5 @@ Feature: Demo of thedemosite
 	|UserNameValue|PasswordValue|
 	|Nagesh|password|
 	|Chetan|passwd|
-	And to validate the below deatils
-	|UserNameValue|PasswordValue|
-	|Nagesh|password|
-	|Chetan|passwd|
 	Then Close the add user window
 	
