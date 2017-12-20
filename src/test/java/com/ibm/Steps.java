@@ -2,12 +2,15 @@ package com.ibm;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -31,14 +34,16 @@ public class Steps {
 		System.out.println("Demo home page is displayed");
 	}
 
-	@When("^Enter username (.*) and Enter password (.*) and Click on Save button$")
-	public void enterUsernameNageshAndEnterPasswordPasswordAndClickOnSaveButton(String UN, String PW) throws Exception {
+	@When("^When User Enters Credentials to Login$")
+	public void enterUsernameNageshAndEnterPasswordPasswordAndClickOnSaveButton(DataTable usercredentials) throws Exception {
+		
+		List<Map<String,String>> data =usercredentials.asMaps(String.class, String.class);
 		//find the username text box and send data2
-		driver.findElement(By.name("username")).sendKeys(UN);
+		driver.findElement(By.name("username")).sendKeys(data.get(0).get("UserNameValue"));
 		System.out.println("username is entered");
 		
 		//find the password textbox and send password
-		driver.findElement(By.name("password")).sendKeys(PW);
+		driver.findElement(By.name("password")).sendKeys(data.get(0).get("PasswordValue"));
 		System.out.println("password is entered");
 		
 		//Click on the save button
@@ -47,13 +52,15 @@ public class Steps {
 		System.out.println("Click on the save button.");
 	}
 
-	@Then("^Validate username is (.*) & password is (.*)$")
-	public void validateUsernameIsNageshPasswordIsPassword(String UN, String PW) throws Exception {
+	@And("^to validate the below deatils$")
+	public void validateUsernameIsNageshPasswordIsPassword(DataTable usercredentials) throws Exception {
+		
+		List<Map<String,String>> data =usercredentials.asMaps(String.class, String.class);
 		driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
-		System.out.println("UserName from feature file :"+UN);
-		System.out.println("Password from feature file :"+PW);
-		String A="The username: "+UN;
-		String B="The password: "+PW;
+		System.out.println("UserName from feature file :"+data.get(0).get("UserNameValue"));
+		System.out.println("Password from feature file :"+data.get(0).get("PasswordValue"));
+		String A="The username: "+data.get(0).get("UserNameValue");
+		String B="The password: "+data.get(0).get("PasswordValue");
 		String ExpectedResult =A+"\n"+B; 
 		String ActialResult=driver.findElement(By.xpath("/html/body/table/tbody/tr/td[1]/blockquote/blockquote[2]/blockquote")).getText();
 		System.out.println("ExpectedResult from feature file :\n"+ExpectedResult);
@@ -61,7 +68,7 @@ public class Steps {
 		assertEquals(ActialResult, ExpectedResult);
 	}
 
-	@And("^Close the add user window$")
+	@Then("^Close the add user window$")
 	public void closeTheAddUserWindow() throws Exception {
 		//Close the driver
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
