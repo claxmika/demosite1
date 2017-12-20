@@ -1,5 +1,3 @@
-@successful
-@feature_one
 Feature: Demo of thedemosite
 
 	@scenario_one
