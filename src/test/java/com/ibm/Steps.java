@@ -71,11 +71,17 @@ public class Steps {
 	@Then("^Close the add user window$")
 	public void closeTheAddUserWindow() throws Exception {
 		//Close the driver
-		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-		driver.quit();
+		//driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+		//driver.quit();
 		System.out.println("firefox add user window is closed.");
 
 	}
+	
+	@Then("^Display the message$")
+	public void Dispalythemessage() throws Exception {
+		System.out.println("DONE");
+	}
+	
 	
 	@Given("^Client will launch the login demo site (.*)$")
 	public void client_will_launch_the_login_user_demo_site(String URL) throws Throwable {
