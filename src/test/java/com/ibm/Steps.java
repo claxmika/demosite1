@@ -77,10 +77,6 @@ public class Steps {
 
 	}
 	
-	@Then("^Display the message$")
-	public void Dispalythemessage() throws Exception {
-		System.out.println("DONE");
-	}
 	
 	
 	@Given("^Client will launch the login demo site (.*)$")
