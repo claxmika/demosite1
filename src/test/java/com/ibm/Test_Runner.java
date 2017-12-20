@@ -10,7 +10,6 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(
 		features= {"src/test/resources"},
-		tags = {"@successful"},
 		snippets = SnippetType.CAMELCASE,
 		plugin = {"pretty:target/cucumber-pretty.txt", "html:target/cucumber-html-report", "json:target/cucumber.json", 
 				"junit:target/cucumber-results.xml"}
