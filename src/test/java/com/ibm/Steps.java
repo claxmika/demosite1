@@ -72,7 +72,7 @@ public class Steps {
 	public void closeTheAddUserWindow() throws Exception {
 		//Close the driver
 		//driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-		//driver.quit();
+		driver.quit();
 		System.out.println("firefox add user window is closed.");
 
 	}
